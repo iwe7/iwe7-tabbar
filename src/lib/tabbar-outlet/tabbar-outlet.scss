@@ -1,0 +1,11 @@
+tabbar-outlet {
+  display: block;
+  width: 100vw;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: #fff;
+  z-index: 99;
+  flex-shrink: 0;
+}
