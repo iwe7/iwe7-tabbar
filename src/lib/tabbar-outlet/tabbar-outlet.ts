@@ -19,7 +19,7 @@ export class TabbarOutletComponent extends Iwe7BaseComponent {
         injector: Injector
     ) {
         super(injector, 'jd-tabbar');
-        this.setStyleInputs(['bottom']);
+        this.setStyleInputs(['bottom', 'position']);
         this.getCyc('ngOnInit').subscribe(res => {
             this.listen(document, 'scroll').subscribe(res => {
                 this.styleObj = {
