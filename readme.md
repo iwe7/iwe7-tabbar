@@ -1,9 +1,14 @@
 ```html
 <tabbar-outlet>
-    <div *tabbarItem>item1</div>
-    <div *tabbarItem>item2</div>
-    <div *tabbarItem>item3</div>
-    <div *tabbarItem>item4</div>
-    <div *tabbarItem>item5</div>
+    <ng-template tabbarBottom></ng-template>
+    <ng-template tabbarContent></ng-template>
+    <ng-template tabbarTop></ng-template>
 </tabbar-outlet>
 ```
+
+| selector        | desc    |
+|-----------------|---------|
+| tabbar-outlet   | outlet  |
+| [tabbarBottom]  | bottom  |
+| [tabbarContent] | content |
+| [tabbarTop]     | top     |

@@ -1,4 +1,5 @@
-import { ViewContainerRef, TemplateRef } from '@angular/core';
+import { Iwe7CoreComponent } from 'iwe7-core';
+import { ViewContainerRef, TemplateRef, Injector } from '@angular/core';
 import { Component, OnInit, ViewEncapsulation, AfterContentInit, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
@@ -7,22 +8,31 @@ import { Component, OnInit, ViewEncapsulation, AfterContentInit, ElementRef, Vie
     styleUrls: ['./tabbar-outlet.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class TabbarOutletComponent {
+export class TabbarOutletComponent extends Iwe7CoreComponent {
     @ViewChild('content', { read: ViewContainerRef }) content: ViewContainerRef;
     @ViewChild('after', { read: ViewContainerRef }) after: ViewContainerRef;
     @ViewChild('before', { read: ViewContainerRef }) before: ViewContainerRef;
 
     constructor(
-        public ele: ElementRef
-    ) { }
+        public ele: ElementRef,
+        injector: Injector
+    ) {
+        super(injector);
+    }
 
     attachContent(tpl: TemplateRef<any>) {
-        this.content.createEmbeddedView(tpl);
+        this.getCyc('ngAfterViewInit').subscribe(res => {
+            this.content.createEmbeddedView(tpl);
+        });
     }
     attachTop(tpl: TemplateRef<any>) {
-        this.before.createEmbeddedView(tpl);
+        this.getCyc('ngAfterViewInit').subscribe(res => {
+            this.before.createEmbeddedView(tpl);
+        });
     }
     attachBottom(tpl: TemplateRef<any>) {
-        this.after.createEmbeddedView(tpl);
+        this.getCyc('ngAfterViewInit').subscribe(res => {
+            this.after.createEmbeddedView(tpl);
+        });
     }
 }
