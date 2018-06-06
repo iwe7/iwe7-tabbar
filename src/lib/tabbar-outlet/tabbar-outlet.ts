@@ -1,6 +1,6 @@
-import { Iwe7CoreComponent } from 'iwe7-core';
 import { ViewContainerRef, TemplateRef, Injector } from '@angular/core';
 import { Component, OnInit, ViewEncapsulation, AfterContentInit, ElementRef, ViewChild } from '@angular/core';
+import { Iwe7BaseComponent } from 'iwe7-base';
 
 @Component({
     selector: 'tabbar-outlet',
@@ -8,16 +8,25 @@ import { Component, OnInit, ViewEncapsulation, AfterContentInit, ElementRef, Vie
     styleUrls: ['./tabbar-outlet.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class TabbarOutletComponent extends Iwe7CoreComponent {
+export class TabbarOutletComponent extends Iwe7BaseComponent {
     @ViewChild('content', { read: ViewContainerRef }) content: ViewContainerRef;
     @ViewChild('after', { read: ViewContainerRef }) after: ViewContainerRef;
     @ViewChild('before', { read: ViewContainerRef }) before: ViewContainerRef;
-
+    bottom: string = '0px';
+    position: string = 'absolute';
     constructor(
         public ele: ElementRef,
         injector: Injector
     ) {
-        super(injector);
+        super(injector, 'jd-tabbar');
+        this.setStyleInputs(['bottom']);
+        this.getCyc('ngOnInit').subscribe(res => {
+            this.listen(document, 'scroll').subscribe(res => {
+                this.styleObj = {
+                    position: 'fixed',
+                };
+            });
+        });
     }
 
     attachContent(tpl: TemplateRef<any>) {

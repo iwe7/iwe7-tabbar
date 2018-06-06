@@ -1,11 +1,36 @@
 tabbar-outlet {
   display: block;
   width: 100vw;
-  position: absolute;
-  bottom: 0px;
+  position: var(--position);
+  bottom: var(--bottom);
   left: 0px;
   right: 0px;
   background: #fff;
   z-index: 99;
   flex-shrink: 0;
+  height: 50px;
+  transition: bottom 10ms ease 0s;
+  .tabbar-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    .jd-footer-item {
+      flex: 1;
+      position: relative;
+      .jd-footer-item-container {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        img {
+          height: 40px;
+        }
+      }
+    }
+  }
 }
